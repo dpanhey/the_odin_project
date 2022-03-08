@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button>Press me</button>
+
+    <script>
+        const string = 'The revolution will not be televised.';
+        console.log(string);
+
+        const badString = string;
+        console.log(badString);
+
+        const sgl = 'Single quotes.';
+        const dbl = "Double quotes.";
+        console.log(sgl);
+        console.log(dbl);
+
+        const bigmouth = 'I\'ve got no right to take my place...';
+        console.log(bigmouth);
+
+        //const greeting = `Hello`;
+        //console.log(greeting);
+
+        //const name = "Chris";
+        //const greeting = `Hello, ${name}`;
+        //console.log(greeting);
+
+        const one = "Hello, ";
+        const two = "how are you?";
+        const joined = `${one}${two}`;
+        console.log(joined);
+
+        const button = document.querySelector("button");
+
+        function greet() {
+            const name = prompt("What is your name?");
+            alert(`Hello ${name}, nice to see you!`);
+        }
+
+        button.addEventListener("click", greet);
+
+        // const greeting = "Hello";
+        // const name = "Chris";
+        // console.log(greeting + ", " + name);
+
+        const name = "Front ";
+        const number = 242;
+        console.log(`${name}${number}`);
+
+        const myString = "123";
+        const myNum = Number(myString);
+        console.log(typeof myNum);
+
+        const myNum2 = 123;
+        const myString2 = myNum2.toString();
+        console.log(typeof myString2);
+
+        const song = "Fight the Youth";
+        const score = 9;
+        const highestScore = 10;
+        // const ouput = `I like the song ${song}. I gave it a score of ${score/highestScore * 100}%.`;
+        // console.log(ouput);
+
+//         const output = `I like the song.
+// I gave it a score of 90%.`;
+//         console.log(output);
+
+        const output = "I like the song.\nI gave it a score of 90%.";
+        console.log(output);
+
+        let txt = "odjgnsogbnüaodngüaifdngüasnngasindgüaisg";
+        let length = txt.length;
+        console.log(length);
+
+        let str = "Apple, Banana, Kiwi";
+        let part = str.slice(7, 13);
+        console.log(part);
+        part = str.slice(-12, -6);
+        console.log(part);
+        part = str.slice(7);
+        console.log(part);
+        part = str.slice(-12);
+        console.log(part);
+
+        part = str.substring(7, 13);
+        console.log(part);
+
+        part = str.substr(7, 6);
+        console.log(part);
+        part = str.substr(7);
+        console.log(part);
+        part = str.substr(-4);
+        console.log(part);
+
+        let text = "Please visit Microsoft and Microsoft!";
+        // let newText = text.replace("Microsoft", "W3Schools");
+        let newText = text.replace(/MICROSOFT/i, "W3Schools");
+        console.log(text);
+        console.log(newText);
+        newText = text.replace(/MICROSOFT/g, "W3Schools");
+        console.log(newText);
+
+        // let text1 = "Hello World!";
+        // let text2 = text1.toUpperCase();
+        // console.log(text1);
+        // console.log(text2);
+        // let text3 = text1.toLowerCase();
+        // console.log(text3);
+
+        let text1 = "Hello";
+        let text2 = "World";
+        let text3 = text1.concat(" ", text2);
+        console.log(text3);
+
+        let text4 = "Hello" + " " + "World!";
+        console.log(text4);
+        text4 = "Hello".concat(" ", "World!");
+        console.log(text4);
+
+        let text5 = "              Hello World!            ";
+        let text6 = text5.trim();
+        console.log(text5);
+        console.log(text6);
+
+        let text7 = "5";
+        let padded = text7.padStart(4,0);
+        console.log(padded);
+        padded = text7.padEnd(4,0);
+        console.log(padded);
+
+        let text8 = "HELLO WORLD";
+        let char = text8.charAt(0);
+        console.log(char);
+        char = text8.charCodeAt(0);
+        console.log(char);
+        char = text8[0];
+        console.log(char);
+
+        let string1 = "Apple,Banana,Kiwi";
+        let string2 = string1.split(",");
+        let string3 = string1.split("");
+        console.log(string1);
+        console.log(string2);
+        console.log(string3);
+
+        // let str1 = "Please locate where 'locate' occurs!";
+        // console.log(str1.indexOf("locate"));
+
+        let str1 = "Please locate where 'locate' occurs!";
+        console.log(str1.search("locate"));
+
+        // alert(2 > 1);
+        // alert(2 == 1);
+        // alert(2 != 1);
+
+        // let result = 5 > 4;
+        // alert(result);
+
+        // alert("2" > 1);
+        // alert("01" == 1);
+
+        // alert(true == 1);
+        // alert(false == 0);
+
+        // alert(0 == false);
+        // alert("" == false);
+        
+        // alert(0 === false);
+
+        // let eingabe = prompt("Who are you?")
+
+        // if (eingabe === "Admin") {
+        //     let password = prompt("Enter password!")
+
+        //     if (password === "TheMaster") {
+        //         alert("Welcome Master!");
+        //     } else if (password === null) {
+        //         alert("Canceled!");
+        //     } else {
+        //         alert("Wrong password!");
+        //     }
+        // } else if (eingabe === null) {
+        //     alert("Canceled!");
+        // } else {
+        //     alert("I dont know you!");
+        // }
+        // console.log(eingabe);
+        // console.log(password);
+
+        // let eingabe = prompt("What is the 'official' name of JavaScript?");
+
+        // if (eingabe == "ECMAScript") {
+        //     alert("Right!")
+        // } else {
+        //     alert("You dont know? ECMAScript!")
+        // };
+
+        // let eingabe = prompt();
+
+        // if (eingabe > 0) {
+        //     alert("1")
+        // } else if (eingabe < 0) {
+        //     alert("-1")
+        // } else {
+        //     alert("0")
+        // };
+
+        let result;
+        let a = 1;
+        let b = 4;
+
+        (a + b < 4) ? result = "Below" : result = "Over";
+
+        console.log(result);
+
+        let login = "Employee";
+
+        let message = (login == "Employee") ? "Hello":
+        (login == "Director") ? "Greetings":
+        (login == "") ? "No login": "";
+
+        console.log(message);
+
+    </script>
+</body>
+</html>

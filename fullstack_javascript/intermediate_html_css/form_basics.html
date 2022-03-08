@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Basics</title>
+</head>
+<body>
+
+    <form action="" method="post">
+        <fieldset>
+            <legend>Account Details</legend>
+            <br>
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="fistName" placeholder="Max">
+            <br><br>
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Mustermann">
+            <br><br>
+            <label for="userEmail">Email Address:</label>
+            <input type="email" name="userEmail" id="userEmail" placeholder="you@example.com">
+            <br><br>
+            <label for="password">Password:</label>
+            <input type="password" name="userPassword" id="password">
+            <br><br>
+            <label for="dob">Date of Birth:</label>
+            <input type="date" name="dateOfBirth" id="dob">
+        </fieldset>
+        <br>
+        <input type="checkbox" name="newsLetter" id="emailSubscribe">
+        <label for="emailSubscribe">Do you want to subscribe to our newsletter?</label>
+        <br><br>
+        <fieldset>
+            <br>
+            <legend>Purchase Details</legend>
+            <label for="carSelect">Which car do you prefer?</label>
+            <select name="selectedCar" id="carSelect">
+                <option value="mercedes">Mercedes</option>
+                <option value="tesla" selected>Tesla</option>
+                <option value="volvo">Volvo</option>
+                <option value="bmw">BMW</option>
+                <option value="mini">Mini</option>
+                <option value="ford">Ford</option>
+            </select>
+            <br><br>
+
+            <label for="amount">Amount:</label>
+            <input type="number" name="amountNumber" id="amount" placeholder="1">
+            <br><br>
+
+            <label for="fashinSelect">What do you wanna buy?</label>
+            <select name="selectedFashion" id="fashionSelect">
+                <optgroup label="Clothing">
+                    <option value="tShirt">T-Shirts</option>
+                    <option value="sweater">Sweater</option>
+                    <option value="coats">Coats</option>
+                </optgroup>
+                <optgroup label="Foot Wear">
+                    <option value="sneakers">Sneakers</option>
+                    <option value="boots">Boots</option>
+                    <option value="sandals">Sandals</option>
+                </optgroup>
+            </select>
+
+            <h2>Ticket Type</h2>
+            <div>
+                <input type="radio" name="ticket_type" id="child" value="child">
+                <label for="child">Child</label>
+            </div>
+            <div>
+                <input type="radio" name="ticket_type" id="adult" value="adult" checked>
+                <label for="adult">Adult</label>
+            </div>
+            <div>
+                <input type="radio" name="ticket_type" id="senior" value="senior">
+                <label for="senior">Senior</label>
+            </div>
+
+            <h2>Pizza Toppings</h2>
+            <fieldset>
+                <legend>Which toppings do you prefer?</legend>
+                    <div>
+                        <input type="checkbox" name="topping" id="sausage" value="sausage">
+                        <label for="sausage">Sausage</label>
+                    </div>
+        
+                    <div>
+                        <input type="checkbox" name="topping" id="onions" value="onions" checked>
+                        <label for="onions">Onions</label>
+                    </div>
+        
+                    <div>
+                        <input type="checkbox" name="topping" id="pepperoni" value="pepperoni" checked>
+                        <label for="pepperoni">Pepperoni</label>
+                    </div>
+        
+                    <div>
+                        <input type="checkbox" name="topping" id="mushrooms" value="mushrooms">
+                        <label for="mushrooms">Mushrooms</label>
+                    </div>
+            </fieldset>
+            
+        </fieldset>
+        <br>
+        <label for="comment">Comment:</label>
+        <textarea name="userComment" id="comment" cols="30" rows="2">Please type in your comment.</textarea>
+        <br><br>
+        <button type="reset">Reset all informations!</button>
+        <br><br>
+        <button type="submit">Send all informations!</button>
+    </form>
+    
+</body>
+</html>
