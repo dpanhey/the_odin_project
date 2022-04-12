@@ -7,7 +7,7 @@ def caesar_cipher(string, shift)
     shift = shift % -26
   end
 
-  string_ascii_new = string_ascii.map do |int|
+  string_ascii_shifted = string_ascii.map do |int|
     case int.is_a?(Integer)
     when int.between?(65, 90)
      if (int + shift) < 65
@@ -30,7 +30,7 @@ def caesar_cipher(string, shift)
     end
   end
 
-  string_chr = string_ascii_new.map { |int| int.chr }
-  
-  return string_chr.join("")
+  string_shifted = string_ascii_shifted.map { |int| int.chr }
+
+  return string_shifted.join("")
 end
