@@ -7,13 +7,13 @@
 def stock_picker(stock_prices)
   profit = 0;
   day_pair = [];
-  stock_prices.each.with_index do |x, a|
-    stock_prices.each.with_index do |y, b|
-      unless b > a && (y - x) > profit
+  stock_prices.each.with_index do |price_1, day_1|
+    stock_prices.each.with_index do |price_2, day_2|
+      unless day_2 > day_1 && (price_2 - price_1) > profit
         next
       else
-        profit = y - x
-        day_pair = [a, b]
+        profit = price_2 - price_1
+        day_pair = [day_1, day_2]
       end
     end
   end
