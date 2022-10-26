@@ -26,7 +26,7 @@ class TicTacToe
   end
 
   def self.set_player_sign
-    puts "Wich sign do you want to have #{@player1_name}? X or O?"
+    puts "Which sign do you want to have #{@player1_name}? X or O?"
     if gets.chomp.downcase == 'x'
       @player1_sign = 'X'
       @computer_mode ? @computer_sign = 'O' : @player2_sign = 'O'
@@ -36,9 +36,13 @@ class TicTacToe
     end
   end
 
+  def self.board_status; end
   def self.display_board; end
   def self.make_turn; end
   def self.check_win_condition; end
+  def self.check_row; end
+  def self.check_column; end
+  def self.check_diagonal; end
   def self.end_game; end
 
   def self.test_assignment
