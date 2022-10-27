@@ -7,6 +7,7 @@ class TicTacToe
     set_game_mode
     create_players
     board
+    check_win_condition
   end
 
   def self.set_game_mode
@@ -18,22 +19,22 @@ class TicTacToe
 
   def self.create_players
     @players = Hash.new { |hash, key| hash[key] = hash.dup.clear }
-    set_player_name
-    set_player_sign
+    assign_player_name
+    assign_player_sign
   end
 
-  def self.set_player_name
+  def self.assign_player_name
     # assign the name of player 1
     puts 'To start, please type your Name:'
     @players[:Player1][:name] = gets.chomp
-    # assign the name of player 2, if not in computer mode
-    return @players[:Player2][:name] = 'The Computer' unless @player_mode
+    # if player_mode is true, assign the name of player 2, else assign computer name
+    return @players[:Player2][:name] = 'The Computer' unless @player_mode == true
 
     puts 'Whats the name of the second Player?'
     @players[:Player2][:name] = gets.chomp
   end
 
-  def self.set_player_sign
+  def self.assign_player_sign
     puts "Which sign do you want to have #{@players[:Player1][:name]}? X or O?"
     if gets.chomp.downcase == 'x'
       @players[:Player1][:sign] = 'X'
@@ -53,12 +54,25 @@ class TicTacToe
   end
 
   def self.make_turn; end
-  def self.check_win_condition; end
-  # theodinproject => nested collection => iteration over a nested array
-  def self.check_row; end
+
+  def self.check_win_condition
+    check_row
+    check_column
+    check_diagonal
+  end
+
+  # refactor check condition
+  # X has to be player 1 or player 2 sign, depends on last set sign
+  def self.check_row
+    @board.each { |row| return end_game if row[0] == 'X' && row[1] == 'X' && row[2] == 'X' }
+  end
+
   def self.check_column; end
   def self.check_diagonal; end
-  def self.end_game; end
+
+  def self.end_game
+    puts 'Game is over!'
+  end
 
   def self.test_assignment
     puts @players[:Player1][:name]
