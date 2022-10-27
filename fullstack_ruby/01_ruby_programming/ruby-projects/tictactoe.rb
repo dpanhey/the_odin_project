@@ -5,35 +5,42 @@ class TicTacToe
   def self.start_game
     puts 'Welcome to Tic Tac Toe!'
     set_game_mode
-    set_player_name
-    set_player_sign
+    create_players
     board
   end
 
   def self.set_game_mode
-    @computer_mode = true
+    @player_mode = false
     puts 'At first, lets set the game mode.'
     puts 'If you want to play against another Player, type Y:'
-    @computer_mode = false if gets.chomp.downcase == 'y'
+    @player_mode = true if gets.chomp.downcase == 'y'
+  end
+
+  def self.create_players
+    @players = Hash.new { |hash, key| hash[key] = hash.dup.clear }
+    set_player_name
+    set_player_sign
   end
 
   def self.set_player_name
-    puts 'To start, please insert your Name:'
-    @player1_name = gets.chomp
-    return if @computer_mode
+    # assign the name of player 1
+    puts 'To start, please type your Name:'
+    @players[:Player1][:name] = gets.chomp
+    # assign the name of player 2, if not in computer mode
+    return @players[:Player2][:name] = 'The Computer' unless @player_mode
 
     puts 'Whats the name of the second Player?'
-    @player2_name = gets.chomp
+    @players[:Player2][:name] = gets.chomp
   end
 
   def self.set_player_sign
-    puts "Which sign do you want to have #{@player1_name}? X or O?"
+    puts "Which sign do you want to have #{@players[:Player1][:name]}? X or O?"
     if gets.chomp.downcase == 'x'
-      @player1_sign = 'X'
-      @computer_mode ? @computer_sign = 'O' : @player2_sign = 'O'
+      @players[:Player1][:sign] = 'X'
+      @players[:Player2][:sign] = 'O'
     else
-      @player1_sign = 'O'
-      @computer_mode ? @computer_sign = 'X' : @player2_sign = 'X'
+      @players[:Player1][:sign] = 'O'
+      @players[:Player2][:sign] = 'X'
     end
   end
 
@@ -54,12 +61,11 @@ class TicTacToe
   def self.end_game; end
 
   def self.test_assignment
-    puts @player1_name
-    puts @player1_sign
-    puts @player2_name
-    puts @player2_sign
-    puts @computer_mode
-    puts @computer_sign
+    puts @players[:Player1][:name]
+    puts @players[:Player1][:sign]
+    puts @players[:Player2][:name]
+    puts @players[:Player2][:sign]
+    puts @player_mode
     display_board
   end
 end
