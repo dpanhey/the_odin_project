@@ -50,7 +50,7 @@ class TicTacToe
   def self.players_turn(turn)
     @turn = turn
     @players.each_value do |player|
-      puts "#{player[:name]}, bitte wähle zuerst die Reihe und danach die Spalte für dein Zeichen."
+      puts "#{player[:name]}, please first choose the row and second the column to place your sign."
       choose_place(player[:sign])
       display_board
       @win_condition = player[:name] if check_win_condition(player[:sign], @row, @column)
