@@ -72,8 +72,10 @@ class TicTacToe
   end
 
   def self.check_win_condition(player_sign, row, column)
-    check_row(player_sign, row)
-    check_column(player_sign, column)
+    return true if check_row(player_sign, row)
+    return true if check_column(player_sign, column)
+    return true if check_diagonal1(player_sign)
+    return true if check_diagonal2(player_sign)
   end
 
   def self.check_row(player_sign, row)
@@ -84,7 +86,13 @@ class TicTacToe
     @board[:A][column] == player_sign && @board[:B][column] == player_sign && @board[:C][column] == player_sign
   end
 
-  def self.check_diagonal; end
+  def self.check_diagonal1(player_sign)
+    @board[:A][0] == player_sign && @board[:B][1] == player_sign && @board[:C][2] == player_sign
+  end
+
+  def self.check_diagonal2(player_sign)
+    @board[:A][2] == player_sign && @board[:B][1] == player_sign && @board[:C][0] == player_sign
+  end
 
   def self.end_game(player_name)
     puts "Congratulations #{player_name}! You won TicTacToe!"
