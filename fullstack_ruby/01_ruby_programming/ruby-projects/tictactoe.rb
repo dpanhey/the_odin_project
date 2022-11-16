@@ -13,19 +13,6 @@ class TicTacToe
     check_win_condition
   end
 
-  # def self.set_game_mode
-  #  @player_mode = false
-  #  puts 'At first, lets set the game mode.'
-  #  puts 'If you want to play against another Player, type Y:'
-  #  @player_mode = true if gets.chomp.downcase == 'y'
-  # end
-
-  # def self.create_players
-  #  @players = Hash.new { |hash, key| hash[key] = hash.dup.clear }
-  #  assign_player_name
-  #  assign_player_sign
-  # end
-
   def self.assign_player_name
     # assign the name of player 1
     puts 'To start, please type your Name:'
@@ -44,10 +31,6 @@ class TicTacToe
       @players[:Player2][:sign] = 'X'
     end
   end
-
-  # def self.board
-  #  @board = [%w[_ _ _], %w[_ _ _], %w[_ _ _]]
-  # end
 
   def self.display_board
     puts '  1   2   3 '
