@@ -38,25 +38,28 @@ class TicTacToe
 
   def self.make_turn
     @turn = 1
+    @win_condition = ''
     until @turn > 9
       players_turn(@turn)
-      end_game if @turn > 9
+      break if @win_condition.empty? == false
     end
+    draw_game if @turn > 9 && @win_condition.empty?
+    end_game(@win_condition) if @win_condition.empty? == false
   end
 
   def self.players_turn(turn)
     @turn = turn
     @players.each_value do |player|
       puts "#{player[:name]}, bitte wähle zuerst die Reihe und danach die Spalte für dein Zeichen."
-      choose_place
-      @board[@row][@column] = player[:sign]
+      choose_place(player[:sign])
       display_board
+      @win_condition = player[:name] if check_win_condition(player[:sign], @row, @column)
       @turn += 1
-      break if turn == 9
+      break if turn == 9 || @win_condition.empty? == false
     end
   end
 
-  def self.choose_place
+  def self.choose_place(player_sign)
     @row = '', @column = ''
     loop do
       @row = gets.chomp.upcase.to_sym
@@ -65,34 +68,32 @@ class TicTacToe
 
       puts 'Please choose an empty place!'
     end
+    @board[@row][@column] = player_sign
   end
 
-  def self.check_win_condition
-    check_row
-    check_column
-    check_diagonal
+  def self.check_win_condition(player_sign, row, column)
+    check_row(player_sign, row)
+    check_column(player_sign, column)
   end
 
-  # refactor check condition
-  # X has to be player 1 or player 2 sign, depends on last set sign
-  def self.check_row(player_sign)
-    @board.each_pair { |_row, column| return end_game if column.all? { |signs| signs == player_sign } }
+  def self.check_row(player_sign, row)
+    @board.values_at(row)[0].all? { |place| place == player_sign }
   end
 
-  def self.check_column; end
+  def self.check_column(player_sign, column)
+    @board[:A][column] == player_sign && @board[:B][column] == player_sign && @board[:C][column] == player_sign
+  end
+
   def self.check_diagonal; end
 
-  def self.end_game
-    puts 'Game is over!'
+  def self.end_game(player_name)
+    puts "Congratulations #{player_name}! You won TicTacToe!"
   end
 
-  def self.test_assignment
-    puts @players[:Player1][:name]
-    puts @players[:Player1][:sign]
-    puts @players[:Player2][:name]
-    puts @players[:Player2][:sign]
+  def self.draw_game
+    puts 'It looks like it is a draw!'
+    puts 'You may play again!'
   end
 end
 
 TicTacToe.start_game
-TicTacToe.test_assignment
