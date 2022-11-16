@@ -2,34 +2,34 @@
 
 # Top level Documentation for class TicTacToe
 class TicTacToe
+  @players = Hash.new { |hash, key| hash[key] = hash.dup.clear }
+  @board = { A: %w[_ _ _], B: %w[_ _ _], C: %w[_ _ _] }
+
   def self.start_game
     puts 'Welcome to Tic Tac Toe!'
-    set_game_mode
-    create_players
-    board
+    assign_player_name
+    assign_player_sign
+    display_board
     check_win_condition
   end
 
-  def self.set_game_mode
-    @player_mode = false
-    puts 'At first, lets set the game mode.'
-    puts 'If you want to play against another Player, type Y:'
-    @player_mode = true if gets.chomp.downcase == 'y'
-  end
+  # def self.set_game_mode
+  #  @player_mode = false
+  #  puts 'At first, lets set the game mode.'
+  #  puts 'If you want to play against another Player, type Y:'
+  #  @player_mode = true if gets.chomp.downcase == 'y'
+  # end
 
-  def self.create_players
-    @players = Hash.new { |hash, key| hash[key] = hash.dup.clear }
-    assign_player_name
-    assign_player_sign
-  end
+  # def self.create_players
+  #  @players = Hash.new { |hash, key| hash[key] = hash.dup.clear }
+  #  assign_player_name
+  #  assign_player_sign
+  # end
 
   def self.assign_player_name
     # assign the name of player 1
     puts 'To start, please type your Name:'
     @players[:Player1][:name] = gets.chomp
-    # if player_mode is true, assign the name of player 2, else assign computer name
-    return @players[:Player2][:name] = 'The Computer' unless @player_mode == true
-
     puts 'Whats the name of the second Player?'
     @players[:Player2][:name] = gets.chomp
   end
@@ -45,12 +45,13 @@ class TicTacToe
     end
   end
 
-  def self.board
-    @board = [%w[_ _ _], %w[_ _ _], %w[_ _ _]]
-  end
+  # def self.board
+  #  @board = [%w[_ _ _], %w[_ _ _], %w[_ _ _]]
+  # end
 
   def self.display_board
-    @board.each { |row| puts " #{row[0]} | #{row[1]} | #{row[2]}" }
+    puts '  1   2   3 '
+    @board.each_pair { |key, value| puts "#{key} #{value[0]} | #{value[1]} | #{value[2]}" }
   end
 
   def self.make_turn; end
@@ -79,8 +80,6 @@ class TicTacToe
     puts @players[:Player1][:sign]
     puts @players[:Player2][:name]
     puts @players[:Player2][:sign]
-    puts @player_mode
-    display_board
   end
 end
 
