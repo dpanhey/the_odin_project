@@ -47,8 +47,8 @@ class TicTacToe
 
   # refactor check condition
   # X has to be player 1 or player 2 sign, depends on last set sign
-  def self.check_row
-    @board.each { |row| return end_game if row[0] == 'X' && row[1] == 'X' && row[2] == 'X' }
+  def self.check_row(player_sign)
+    @board.each_pair { |_row, column| return end_game if column.all? { |signs| signs == player_sign } }
   end
 
   def self.check_column; end
