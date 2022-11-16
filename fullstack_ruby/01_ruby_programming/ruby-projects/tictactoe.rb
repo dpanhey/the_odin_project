@@ -1,15 +1,20 @@
 # frozen_string_literal: true
 
-# Top level Documentation for class TicTacToe
+# My first Tic Tac Toe game written in Ruby using Object Oriented Programming
 class TicTacToe
   @players = Hash.new { |hash, key| hash[key] = hash.dup.clear }
   @board = { A: %w[_ _ _], B: %w[_ _ _], C: %w[_ _ _] }
 
   def self.start_game
     puts 'Welcome to Tic Tac Toe!'
+    assign_player
+    display_board
+    game_logic
+  end
+
+  def assign_player
     assign_player_name
     assign_player_sign
-    make_turn
   end
 
   def self.assign_player_name
@@ -36,7 +41,7 @@ class TicTacToe
     @board.each_pair { |key, value| puts "#{key} #{value[0]} | #{value[1]} | #{value[2]}" }
   end
 
-  def self.make_turn
+  def self.game_logic
     @turn = 1
     @win_condition = ''
     until @turn > 9
