@@ -9,8 +9,7 @@ class TicTacToe
     puts 'Welcome to Tic Tac Toe!'
     assign_player_name
     assign_player_sign
-    display_board
-    check_win_condition
+    make_turn
   end
 
   def self.assign_player_name
@@ -37,7 +36,36 @@ class TicTacToe
     @board.each_pair { |key, value| puts "#{key} #{value[0]} | #{value[1]} | #{value[2]}" }
   end
 
-  def self.make_turn; end
+  def self.make_turn
+    @turn = 1
+    until @turn > 9
+      players_turn(@turn)
+      end_game if @turn > 9
+    end
+  end
+
+  def self.players_turn(turn)
+    @turn = turn
+    @players.each_value do |player|
+      puts "#{player[:name]}, bitte wähle zuerst die Reihe und danach die Spalte für dein Zeichen."
+      choose_place
+      @board[@row][@column] = player[:sign]
+      display_board
+      @turn += 1
+      break if turn == 9
+    end
+  end
+
+  def self.choose_place
+    @row = '', @column = ''
+    loop do
+      @row = gets.chomp.upcase.to_sym
+      @column = gets.chomp.to_i - 1
+      break if @board[@row][@column] == '_'
+
+      puts 'Please choose an empty place!'
+    end
+  end
 
   def self.check_win_condition
     check_row
