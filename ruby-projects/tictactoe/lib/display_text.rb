@@ -6,4 +6,12 @@ module DisplayText
     puts '  1   2   3 '
     board.each_pair { |key, value| puts "#{key} #{value[0]} | #{value[1]} | #{value[2]}" }
   end
+
+  def display_string_sleep(string)
+    string.each_char do |char|
+      print char
+      sleep 0.25
+      $stdout.flush
+    end
+  end
 end
