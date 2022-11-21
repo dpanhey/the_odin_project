@@ -14,4 +14,12 @@ module DisplayText
       $stdout.flush
     end
   end
+
+  def display_multiline_string_sleep(array)
+    array.each do |element|
+      display_string_sleep(element)
+      print "\n"
+      sleep 1
+    end
+  end
 end
