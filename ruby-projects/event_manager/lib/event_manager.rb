@@ -2,6 +2,7 @@
 
 require 'csv'
 require 'google/apis/civicinfo_v2'
+require 'erb'
 
 def clean_zipcode(zipcode)
   zipcode.to_s.rjust(5, '0').slice(0..4)
@@ -15,9 +16,17 @@ def legislator_by_zipcode(zipcode)
     address: zipcode,
     levels: 'country',
     roles: %w[legislatorUpperBody legislatorLowerBody]
-  ).officials.map(&:name).join(', ')
+  ).officials
 rescue StandardError
   'You can find your representatives by visiting www.commoncause.org/take-action/find-elected-officials'
+end
+
+def form_letter_file_generation(id, name, legislators)
+  Dir.mkdir('output') unless Dir.exist?('output')
+
+  File.open("output/thanks_letter#{id}.html", 'w') do |file|
+    file.puts (ERB.new File.read 'lib/form_letter.erb').result(binding)
+  end
 end
 
 puts 'Event Manager Initialized!'
@@ -28,17 +37,12 @@ contents = CSV.open(
   header_converters: :symbol
 )
 
-template_letter = File.read 'lib/form_letter.html'
-
 contents.each do |row|
+  id = row[0]
   name = row[:first_name]
-
   zipcode = clean_zipcode(row[:zipcode])
-
   legislators = legislator_by_zipcode(zipcode)
-
-  personal_letter = template_letter.gsub('FIRST_NAME', name)
-  personal_letter.gsub!('LEGISLATORS', legislators)
-
-  puts personal_letter
+  form_letter_file_generation(id, name, legislators)
 end
+
+puts 'Event Manager Script Successful!'
