@@ -46,6 +46,8 @@ contents = CSV.open(
   header_converters: :symbol
 )
 
+valid_phone_numbers = []
+
 contents.each do |row|
   id = row[0]
   name = row[:first_name]
@@ -54,7 +56,8 @@ contents.each do |row|
   legislators = legislator_by_zipcode(zipcode)
   form_letter_file_generation(id, name, legislators)
 
-  puts clean_phone_number(phone_number)
+  valid_phone_numbers << clean_phone_number(phone_number) unless clean_phone_number(phone_number).nil?
 end
 
+p valid_phone_numbers
 puts 'Event Manager Script Successful!'
