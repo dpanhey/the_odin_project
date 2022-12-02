@@ -8,6 +8,15 @@ def clean_zipcode(zipcode)
   zipcode.to_s.rjust(5, '0').slice(0..4)
 end
 
+def clean_phone_number(phone_number)
+  case phone_number.tr('^0-9', '').length
+  when 10
+    phone_number.tr('^0-9', '')
+  when 11
+    phone_number.tr('^0-9', '').slice(1..10) if phone_number.tr('^0-9', '').start_with?('1')
+  end
+end
+
 def legislator_by_zipcode(zipcode)
   civic_info = Google::Apis::CivicinfoV2::CivicInfoService.new
   civic_info.key = 'AIzaSyClRzDqDh5MsXwnCWi0kOiiBivP6JsSyBw'
@@ -40,9 +49,12 @@ contents = CSV.open(
 contents.each do |row|
   id = row[0]
   name = row[:first_name]
+  phone_number = row[:homephone]
   zipcode = clean_zipcode(row[:zipcode])
   legislators = legislator_by_zipcode(zipcode)
   form_letter_file_generation(id, name, legislators)
+
+  puts clean_phone_number(phone_number)
 end
 
 puts 'Event Manager Script Successful!'
