@@ -38,6 +38,10 @@ def form_letter_file_generation(id, name, legislators)
   end
 end
 
+def parse_registration_time(reg_date)
+  Time.strptime(reg_date, '%m/%d/%y %k:%M')
+end
+
 puts 'Event Manager Initialized!'
 
 contents = CSV.open(
@@ -47,17 +51,22 @@ contents = CSV.open(
 )
 
 valid_phone_numbers = []
+registration_hours = Hash.new(0)
 
 contents.each do |row|
   id = row[0]
   name = row[:first_name]
   phone_number = row[:homephone]
-  zipcode = clean_zipcode(row[:zipcode])
-  legislators = legislator_by_zipcode(zipcode)
-  form_letter_file_generation(id, name, legislators)
+  reg_date = row[:regdate]
+  # zipcode = clean_zipcode(row[:zipcode])
+  # legislators = legislator_by_zipcode(zipcode)
+  # form_letter_file_generation(id, name, legislators)
 
-  valid_phone_numbers << clean_phone_number(phone_number) unless clean_phone_number(phone_number).nil?
+  # valid_phone_numbers << clean_phone_number(phone_number) unless clean_phone_number(phone_number).nil?
+  registration_hours[parse_registration_time(reg_date).hour] += 1
 end
 
-p valid_phone_numbers
+# p valid_phone_numbers
+p registration_hours.sort_by { |_hour, value| -value }.to_h
+
 puts 'Event Manager Script Successful!'
