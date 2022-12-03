@@ -58,15 +58,14 @@ contents.each do |row|
   name = row[:first_name]
   phone_number = row[:homephone]
   reg_date = row[:regdate]
-  # zipcode = clean_zipcode(row[:zipcode])
-  # legislators = legislator_by_zipcode(zipcode)
-  # form_letter_file_generation(id, name, legislators)
+  zipcode = clean_zipcode(row[:zipcode])
+  legislators = legislator_by_zipcode(zipcode)
+  form_letter_file_generation(id, name, legislators)
 
-  # valid_phone_numbers << clean_phone_number(phone_number) unless clean_phone_number(phone_number).nil?
+  valid_phone_numbers << clean_phone_number(phone_number) unless clean_phone_number(phone_number).nil?
   registration_hours[parse_registration_time(reg_date).hour] += 1
 end
 
-# p valid_phone_numbers
 p "Most used Registration Time: #{(registration_hours.max_by { |_hour, value| value })[0]}h "\
   "with #{(registration_hours.max_by { |_hour, value| value })[1]} registrations."
 
