@@ -67,6 +67,7 @@ contents.each do |row|
 end
 
 # p valid_phone_numbers
-p registration_hours.sort_by { |_hour, value| -value }.to_h
+p "Most used Registration Time: #{(registration_hours.max_by { |_hour, value| value })[0]}h "\
+  "with #{(registration_hours.max_by { |_hour, value| value })[1]} registrations."
 
 puts 'Event Manager Script Successful!'
