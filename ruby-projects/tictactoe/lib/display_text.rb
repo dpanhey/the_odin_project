@@ -7,19 +7,24 @@ module DisplayText
     board.each_pair { |key, value| puts "#{key} #{value[0]} | #{value[1]} | #{value[2]}" }
   end
 
-  def display_string_sleep(string)
-    string.each_char do |char|
+  def display_word_sleep(word)
+    word.each_char do |char|
       print char
-      sleep 0.25
+      sleep 0.05
       $stdout.flush
     end
   end
 
-  def display_multiline_string_sleep(array)
+  def display_string(string)
+    display_word_sleep(string)
+    print "\n"
+  end
+
+  def display_multiline_string(array)
     array.each do |element|
-      display_string_sleep(element)
+      display_word_sleep(element)
       print "\n"
-      sleep 1
+      sleep 0.5
     end
   end
 end
