@@ -27,4 +27,13 @@ module DisplayText
       sleep 0.5
     end
   end
+
+  def intro_message
+    display_multiline_string(['Welcome to TicaTacToe!',
+                              'To start, please type in your names one after another!'])
+  end
+
+  def start_message
+    display_string("Alright, lets begin with #{@players.players[0][:name]}!")
+  end
 end
