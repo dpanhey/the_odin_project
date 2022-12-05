@@ -5,13 +5,10 @@ require_all 'lib'
 
 # The main class for bundling all classes and modules and starting the game
 class TicTacToe
-  include DisplayText
-  def intro
-    intro_message
-    @players = Player.new
-    start_message
+  def initialize
+    game = Game.new
+    game.intro
   end
 end
 
-game = TicTacToe.new
-game.intro
+TicTacToe.new
